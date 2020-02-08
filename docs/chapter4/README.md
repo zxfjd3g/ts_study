@@ -61,7 +61,7 @@ npx vuepress build docs
 
 ```javacript
 module.exports = {
-  base: '/ts-test/', /* 基础虚拟路径 */
+  base: '/ts-study/', /* 基础虚拟路径 */
   dest: 'dist', /* 打包文件基础路径, 在命令所在目录下 */
   title: 'TypeScript 入门', // 标题
   description: '学习使用 TypeScript', // 标题下的描述
