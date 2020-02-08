@@ -1,8 +1,5 @@
 /* 测试1: 类型注解 */
 (function () {
-  function fn2() {
-    console.log('fn2()')
-  }
 
   function greeter(person: string) {
     return 'hello ' + person
