@@ -42,12 +42,6 @@ Hello, Yee
     1). 生成配置文件tsconfig.json
         tsc --init
     2). 修改tsconfig.json配置
-        "module": "umd", 
-        "lib": [
-          "dom",
-          "esnext",
-          "es2015.promise"
-        ],
         "outDir": "./js",
         "strict": false,    
     3). 启动监视任务: 

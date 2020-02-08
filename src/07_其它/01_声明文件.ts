@@ -7,5 +7,5 @@
 */
 import jQuery from 'jquery'
 
-jQuery('')
+console.log(jQuery(''))
 // jQuery('#test')

@@ -30,6 +30,6 @@ b = true
 const div: HTMLElement = document.getElementById('test')
 const divs: NodeList = document.querySelectorAll('div')
 document.addEventListener('click', (event: MouseEvent) => {
-  console.log(event.target)
+  console.dir(event.target)
 })
 const fragment: DocumentFragment = document.createDocumentFragment()
