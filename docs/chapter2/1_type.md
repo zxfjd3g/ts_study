@@ -7,7 +7,7 @@ TypeScript 支持与 JavaScript 几乎相同的数据类型，此外还提供了
 最基本的数据类型就是简单的 true/false 值，在JavaScript 和 TypeScript 里叫做 `boolean`（其它语言中也一样）。
 
 ```typescript
-var isDone = false;
+let isDone: boolean = false;
 isDone = true;
 // isDone = 2 // error
 ```
