@@ -1,7 +1,7 @@
 module.exports = {
   base: '/ts-study/', /* 基础虚拟路径 */
   dest: 'docs/dist', /* 打包文件基础路径, 在命令所在目录下 */
-  title: 'TypeScript 入门', // 标题
+  title: '尚硅谷前端: TypeScript 入门', // 标题
   description: '学习使用 TypeScript', // 标题下的描述
   themeConfig: { // 主题配置
     sidebar: [ // 左侧导航
