@@ -24,6 +24,7 @@ module.exports = {
           'chapter2/3_class',
           'chapter2/4_function',
           'chapter2/5_generic',
+          'chapter2/6_other',
         ]
       },
       {

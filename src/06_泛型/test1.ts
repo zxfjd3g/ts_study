@@ -13,8 +13,8 @@
   }
 
   const arr1 = createArray(11, 3)
-  const arr2 = createArray('a', 3)
-  console.log(arr1[0].length)
+  const arr2 = createArray('aa', 3)
+  console.log(arr1[0].toFixed(), arr2[0].split(''))
   
   /* 
   函数泛型
@@ -28,9 +28,9 @@
   }
   const arr3 = createArray2<number>(11, 3)
   console.log(arr3[0].toFixed())
-  // console.log(arr3[0].length) // error
-  const arr4 = createArray2<string>('a', 3)
-  console.log(arr4[0].length)
+  // console.log(arr3[0].split('')) // error
+  const arr4 = createArray2<string>('aa', 3)
+  console.log(arr4[0].split(''))
   // console.log(arr4[0].toFixed()) // error
 
   /* 多个泛型参数的函数 */

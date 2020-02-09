@@ -20,16 +20,6 @@ let myAdd = function(x, y) {
 }
 ```
 
-在 JavaScript 里，函数可以使用函数体外部的变量。 当函数这么做时，我们说它‘捕获’了这些变量。 至于为什么可以这样做以及其中的利弊超出了本文的范围，但是深刻理解这个机制对学习 JavaScript 和 TypeScript 会很有帮助。
-
-```javascript
-let z = 100
-
-function addToZ(x, y) {
-  return x + y + z
-}
-```
-
 ## 函数类型
 
 ### 为函数定义类型
@@ -59,23 +49,6 @@ function(x: number, y: number): number {
 }
 
 ```
-
-### 推断类型
-
-尝试这个例子的时候，你会发现如果你在赋值语句的一边指定了类型但是另一边没有类型的话，TypeScript 编译器会自动识别出类型：
-
-```typescript
-let myAdd = function(x: number, y: number): number { 
-  return x + y
-}
-
-let myAdd: (baseValue: number, increment: number) => number = 
-function(x, y) {
-  return x + y
-}
-```
-
-这叫做“按上下文归类”，是类型推论的一种。它帮助我们更好地为程序指定类型。
 
 ## 可选参数和默认参数
 
@@ -114,7 +87,7 @@ function info(x: string, ...args: string[]) {
 info('abc', 'c', 'b', 'a')
 ```
 
-## 重载
+## 函数重载
 
 函数重载: 函数名相同, 而形参不同的多个函数  
 在JS中, 由于弱类型的特点和形参与实参可以不匹配, 是没有函数重载这一说的
@@ -134,4 +107,8 @@ function add(x: string | number, y: string | number): string | number {
     return x + y
   }
 }
+
+console.log(add(1, 2))
+console.log(add('a', 'b'))
+// console.log(add(1, 'a')) // error
 ```

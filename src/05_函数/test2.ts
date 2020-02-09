@@ -11,13 +11,14 @@
       return firstName
     }
   }
-
   console.log(buildName('C', 'D'))
   console.log(buildName('C'))
   console.log(buildName())
+  
 
   function info(x: string, ...args: string[]) {
     console.log(x, args)
   }
   info('abc', 'c', 'b', 'a')
+
 })()

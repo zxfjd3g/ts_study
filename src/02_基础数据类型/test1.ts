@@ -19,16 +19,16 @@
   // isDone = 2 // error
 
   // 2. number
-  let a1:number = 10 // 十进制
-  let a2:number = 0b1010  // 二进制
-  let a3:number = 0o12 // 八进制
-  let a4:number = 0xb // 十六进制
+  let a1: number = 10 // 十进制
+  let a2: number = 0b1010  // 二进制
+  let a3: number = 0o12 // 八进制
+  let a4: number = 0xa // 十六进制
 
   // 3. string
-  let name:string = 'tom'
+  let name: string = 'tom'
   name = 'jack'
   // name = 12 // error
-  let age:number = 12
+  let age: number = 12
   const info = `My name is ${name}, I am ${age} years old!`
 
   // 4. undefined和null
@@ -37,7 +37,7 @@
   /* undefined和null类型的变量意义不大 */
   /* undefined和null是任意类型的子类型 */
   /* 在ts非严格模式下才可以, 在严格模式下会报错 */
-  let a5:string = null
+  let a5: string = null
 
   // 5. 数组
   const list1: number[] = [1, 2, 3]
@@ -73,7 +73,7 @@
 
   // 8. any 
   /* 任意类型, 数据类型不固定时使用 */
-  let notSure:any = 3
+  let notSure: any = 3
   notSure = 'mybe a string'
   notSure = true
   // 不同类型类型的数组
@@ -89,7 +89,7 @@
   }
 
   // 10. object
-  function fn2(obj:object):object {
+  function fn2(obj: object): object {
     console.log('fn2()', obj)
     return {}
     // return undefined

@@ -10,7 +10,7 @@
 
   // 函数表达式
   let myAdd = function(x, y) { 
-    return x + y;
+    return x + y
   }
 })();
 

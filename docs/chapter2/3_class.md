@@ -7,19 +7,27 @@
 下面看一个使用类的例子：
 
 ```typescript
+/* 
+类的基本定义与使用
+*/
 class Greeter {
+  // 声明属性
   message: string
 
-  constructor (message) {
+  // 构造方法
+  constructor (message: string) {
     this.message = message
   }
 
+  // 一般方法
   greet (): string {
-    return `hello ${this.message}`
+    return 'Hello ' + this.message
   }
 }
 
+// 创建类的实例
 const greeter = new Greeter('world')
+// 调用实例的方法
 console.log(greeter.greet())
 ```
 
@@ -39,7 +47,7 @@ console.log(greeter.greet())
 
 ```typescript
 class Animal {
-  run (distance: number=0) {
+  run (distance: number) {
     console.log(`Animal run ${distance}m`)
   }
 }
@@ -51,8 +59,8 @@ class Dog extends Animal {
 }
 
 const dog = new Dog()
-dog.cry()
-dog.run(10)
+dog.cry() 
+dog.run(100) // 可以调用从父中继承得到的方法
 ```
 
 这个例子展示了最基本的继承：类从基类中继承了属性和方法。 这里，`Dog` 是一个 派生类，它派生自 `Animal` 基类，通过 `extends` 关键字。 派生类通常被称作*子类*，基类通常被称作*超类*。
@@ -64,41 +72,64 @@ dog.run(10)
 ```typescript
 class Animal {
   name: string
-  constructor (name) {
+  
+  constructor (name: string) {
     this.name = name
   }
+
   run (distance: number=0) {
     console.log(`${this.name} run ${distance}m`)
   }
+
 }
 
 class Snake extends Animal {
-  constructor(name) {
-    super(name) // 调用父类型构造方法
+  constructor (name: string) {
+    // 调用父类型构造方法
+    super(name)
   }
 
+  // 重写父类型的方法
   run (distance: number=5) {
     console.log('sliding...')
-    super.run(distance) // 调用父类型方法
+    super.run(distance)
   }
 }
+
 class Horse extends Animal {
-  constructor(name) {
-    super(name) // 调用父类型构造方法
+  constructor (name: string) {
+    // 调用父类型构造方法
+    super(name)
   }
 
-  run (distance: number=45) {
+  // 重写父类型的方法
+  run (distance: number=50) {
     console.log('dashing...')
-    super.run(distance) // 调用父类型方法
+    // 调用父类型的一般方法
+    super.run(distance)
+  }
+
+  xxx () {
+    console.log('xxx()')
   }
 }
 
 const snake = new Snake('sn')
 snake.run()
 
-// 父类型变量指向子类型实现
-const tom: Animal = new Horse('ho')
-tom.run(50)
+const horse = new Horse('ho')
+horse.run()
+
+// 父类型引用指向子类型的实例 ==> 多态
+const tom: Animal = new Horse('ho22')
+tom.run()
+
+/* 如果子类型没有扩展的方法, 可以让子类型引用指向父类型的实例 */
+const tom3: Snake = new Animal('tom3')
+tom3.run()
+/* 如果子类型有扩展的方法, 不能让子类型引用指向父类型的实例 */
+// const tom2: Horse = new Animal('tom2')
+// tom2.run()
 ```
 
 这个例子展示了一些上面没有提到的特性。 这一次，我们使用 `extends` 关键字创建了 Animal的两个子类：`Horse` 和 `Snake`。
@@ -131,44 +162,57 @@ ho run 50m
 `protected` 修饰符与 `private` 修饰符的行为很相似，但有一点不同，`protected`成员在派生类中仍然可以访问。例如：
 
 ```typescript
+/* 
+访问修饰符: 用来描述类内部的属性/方法的可访问性
+  public: 默认值, 公开的外部也可以访问
+  private: 只能类内部可以访问
+  protected: 类内部和子类可以访问
+*/
+
 class Animal {
   public name: string
-  public constructor (name) {
+  
+  public constructor (name: string) {
     this.name = name
   }
+
   public run (distance: number=0) {
     console.log(`${this.name} run ${distance}m`)
   }
+
 }
 
 class Snake extends Animal {
-  private age: number=12 // 只能在当前类内部可见, 不能在类外部可见(访问)
-  protected sex: string = '女'
-
-  constructor(name) {
-    super(name) // 调用父类型构造方法
+  private age: number = 10
+  protected sex: string = '男'
+  constructor (name: string) {
+    // 调用父类型构造方法
+    super(name)
   }
 
+  // 重写父类型的方法
   run (distance: number=5) {
-    console.log('sliding... ', this.age)
-    super.run(distance) // 调用父类型方法
+    console.log('sliding...', this.age, this.sex)
+    super.run(distance)
   }
 }
 
 class RedSnake extends Snake {
-  constructor(name) {
+  constructor (name: string) {
     super(name)
   }
 
-  run (distance: number=45) {
-    console.log('RedSnake dashing...')
-    console.log(this.sex) // 可以访问父类型中protected属性
-    // console.log(this.age) // 不可以访问父类型中private属性
-    super.run(distance) // 调用父类型方法
+  run (distance: number=5) {
+    console.log('RedSnake sliding...') 
+    console.log(this.sex) // 能看到父类中受保护的成员
+    // console.log(this.age) // 子类看不到父类中私有的成员
+    super.run(distance)
   }
 }
 
-// console.log(new Snake('xxx').age) // error 属性“age”为私有属性，只能在类“Snake”中访问。  
+console.log(new Snake('xxx').name) // 公开的可见
+// console.log(new Snake('xxx').sex) // 受保护的不可见
+// console.log(new Snake('xxx').age) //  私有的不可见
 ```
 
 ## readonly 修饰符

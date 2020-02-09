@@ -5,7 +5,5 @@
 声明文件: 把声明语句放到一个单独的文件（jQuery.d.ts）中, ts会自动解析到项目中所有声明文件
 下载声明文件: npm install @types/jquery --save-dev
 */
-import jQuery from 'jquery'
-
 console.log(jQuery(''))
 // jQuery('#test')
