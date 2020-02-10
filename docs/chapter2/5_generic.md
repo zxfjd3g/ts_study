@@ -57,42 +57,56 @@ console.log(result[0].length, result[1].toFixed())
 在使用接口时, 再指定具体的泛型类型  
 
 ```typescript
-interface IbaseCRUD <T> {
-  data: T[]
-  add: (t: T) => void
-  getById: (id: number) => T
+// 定义一个CRUD操作的泛型接口
+interface BaseCRUD<T> {
+
+  data: T[] //保存内部所有数据对象的数组
+
+  add: (t: T) => number // 添加一个新的数据对象 返回数据对象的id
+
+  getById: (id: number) => T // 根据id查询对应的数据对象
 }
 
+/* 定义一个数据类型 */
 class User {
-  id?: number; //id主键自增
-  name: string; //姓名
-  age: number; //年龄
+  id?: number
+  name: string
+  age: number
 
-  constructor (name, age) {
+  constructor (name: string, age: number) {
     this.name = name
     this.age = age
   }
 }
 
-class UserCRUD implements IbaseCRUD <User> {
-  data: User[] = []
-  
-  add(user: User): void {
-    user = {...user, id: Date.now()}
-    this.data.push(user)
-    console.log('保存user', user.id)
-  }
+// 定义操作User数据的实现类
+class UserCRUD implements BaseCRUD<User> {
+  data: User[] = [] 
 
-  getById(id: number): User {
-    return this.data.find(item => item.id===id)
+  /* 
+  添加一个新的数据对象 返回数据对象的id
+  */
+  add (user: User): number {
+    const id = Date.now()
+    user.id = id
+    this.data.push(user)
+
+    return id
+  } 
+
+  /* 
+  根据id查询对应的数据对象
+  */
+  getById (id: number): User {
+    return this.data.find(user => user.id===id)
   }
 }
 
-
+// 测试
 const userCRUD = new UserCRUD()
-userCRUD.add(new User('tom', 12))
-userCRUD.add(new User('tom2', 13))
-console.log(userCRUD.data)
+const id1 = userCRUD.add(new User('tom', 12))
+const id2 = userCRUD.add(new User('tom2', 13))
+console.log(userCRUD.data, userCRUD.getById(id1), use
 ```
 
 ## 泛型类
@@ -108,13 +122,13 @@ class GenericNumber<T> {
 
 let myGenericNumber = new GenericNumber<number>()
 myGenericNumber.zeroValue = 0
-myGenericNumber.add = function(x, y) {
+myGenericNumber.add = function(x: number, y: number) {
   return x + y 
 }
 
 let stringNumeric = new GenericNumber<string>()
 stringNumeric.zeroValue = 'abc'
-stringNumeric.add = function(x, y) { 
+stringNumeric.add = function(x: string, y: string) { 
   return x + y
 }
 
