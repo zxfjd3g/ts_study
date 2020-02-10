@@ -6,5 +6,11 @@
 ## 2. 创建支持TS的React项目
 
 ```
-npx create-react-app my-app --typescript
+npx create-react-app react-ts --typescript
+```
+
+## 3. 运行项目
+
+```
+yarn start
 ```
